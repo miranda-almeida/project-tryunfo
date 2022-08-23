@@ -15,8 +15,28 @@ class App extends React.Component {
     isSaveButtonDisabled: true,
   };
 
+  numberRangeInput = (values) => {
+    const maxPerAtrr = 90;
+    if (Number(values) >= 0 && Number(values) <= maxPerAtrr) return true;
+  };
+
   onInputChange = (event) => {
-    this.setState({ [event.target.name]: event.target.value });
+    this.setState({ [event.target.name]: event.target.value }, () => {
+      const { cardName, cardDescription, cardImage,
+        cardRare, cardAttr1, cardAttr2, cardAttr3 } = this.state;
+      const total = Number(cardAttr1) + Number(cardAttr2) + Number(cardAttr3);
+      const maxTotal = 210;
+      const validateNotEmpty1 = this.numberRangeInput(cardAttr1);
+      const validateNotEmpty2 = this.numberRangeInput(cardAttr2);
+      const validateNotEmpty3 = this.numberRangeInput(cardAttr3);
+      if (cardName && cardDescription && cardImage
+        && cardRare && total <= maxTotal && validateNotEmpty1
+        && validateNotEmpty2 && validateNotEmpty3) {
+        this.setState({ isSaveButtonDisabled: false });
+      } else {
+        this.setState({ isSaveButtonDisabled: true });
+      }
+    });
   };
 
   render() {
