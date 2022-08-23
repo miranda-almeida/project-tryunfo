@@ -14,53 +14,66 @@ class Form extends React.Component {
         <h1>Form</h1>
         <input
           type="text"
+          name="cardName"
           data-testid="name-input"
           value={ cardName }
           onChange={ onInputChange }
         />
         <input
           type="textarea"
+          name="cardDescription"
           data-testid="description-input"
           value={ cardDescription }
           onChange={ onInputChange }
         />
         <input
           type="number"
+          name="cardAttr1"
           data-testid="attr1-input"
           value={ cardAttr1 }
           onChange={ onInputChange }
         />
         <input
           type="number"
+          name="cardAttr2"
           data-testid="attr2-input"
           value={ cardAttr2 }
           onChange={ onInputChange }
         />
         <input
           type="number"
+          name="cardAttr3"
           data-testid="attr3-input"
           value={ cardAttr3 }
           onChange={ onInputChange }
         />
         <input
           type="text"
+          name="cardImage"
           data-testid="image-input"
           value={ cardImage }
           onChange={ onInputChange }
         />
-        <select data-testid="rare-input" value={ cardRare } onChange={ onInputChange }>
+        <select
+          name="cardRare"
+          data-testid="rare-input"
+          value={ cardRare }
+          onChange={ onInputChange }
+        >
           <option value="normal">normal</option>
           <option value="raro">raro</option>
           <option value="muito raro">muito raro</option>
         </select>
         <input
           type="checkbox"
+          name="cardTrunfo"
           data-testid="trunfo-input"
           checked={ cardTrunfo }
           onChange={ onInputChange }
         />
         <button
           type="button"
+          name="isSaveButtonDisabled"
           data-testid="save-button"
           disabled={ isSaveButtonDisabled }
           onClick={ onSaveButtonClick }
