@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 class Form extends React.Component {
   render() {
     const {
-      cardName, cardDescription, onInputChange,
+      cardName, cardDescription, onInputChange, hasTrunfo,
       cardAttr1, cardAttr2, cardAttr3, cardImage,
       cardRare, cardTrunfo, isSaveButtonDisabled, onSaveButtonClick,
     } = this.props;
@@ -64,13 +64,17 @@ class Form extends React.Component {
           <option value="raro">raro</option>
           <option value="muito raro">muito raro</option>
         </select>
-        <input
-          type="checkbox"
-          name="cardTrunfo"
-          data-testid="trunfo-input"
-          checked={ cardTrunfo }
-          onChange={ onInputChange }
-        />
+        {/* ao invés de if/else, uso de renderização condicional com operador ternário em mais de uma linha
+        ref: https://js.educative.io/answers/how-to-use-the-ternary-operator-in-react */}
+        { hasTrunfo ? <p>Você já tem um Super Trunfo em seu baralho</p> : (
+          <input
+            type="checkbox"
+            name="cardTrunfo"
+            data-testid="trunfo-input"
+            checked={ cardTrunfo }
+            onChange={ onInputChange }
+          />
+        )}
         <button
           type="button"
           name="isSaveButtonDisabled"
@@ -108,6 +112,7 @@ Form.propTypes = {
   cardRare: PropTypes.string.isRequired,
   isSaveButtonDisabled: PropTypes.bool.isRequired,
   onSaveButtonClick: PropTypes.func.isRequired,
+  hasTrunfo: PropTypes.bool.isRequired,
 };
 
 export default Form;
