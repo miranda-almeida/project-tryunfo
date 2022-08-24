@@ -13,6 +13,23 @@ class App extends React.Component {
     cardRare: 'normal',
     cardTrunfo: false,
     isSaveButtonDisabled: true,
+    data: [],
+  };
+
+  onSaveButtonClick = (receivedObject) => {
+    this.setState((previousState) => ({
+      data: [...previousState.data, receivedObject],
+    }), () => {
+      this.setState({
+        cardName: '',
+        cardImage: '',
+        cardDescription: '',
+        cardAttr1: 0,
+        cardAttr2: 0,
+        cardAttr3: 0,
+        cardRare: 'normal',
+      });
+    });
   };
 
   numberRangeInput = (values) => {
@@ -60,6 +77,7 @@ class App extends React.Component {
           cardRare={ cardRare }
           cardTrunfo={ cardTrunfo }
           isSaveButtonDisabled={ isSaveButtonDisabled }
+          onSaveButtonClick={ this.onSaveButtonClick }
         />
         <Card
           cardName={ cardName }
